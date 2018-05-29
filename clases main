@@ -1,0 +1,22 @@
+#include <iostream>
+#include "Arreglo.h"
+
+using namespace std;
+
+int main()
+{
+    Arreglo a(5);
+    a.rellenar_arreglo();
+    cout<<"Inserta elemento"<<endl;
+    a.insertar(6,0);
+    a.imprimir();
+    cout<<"Eliminar"<<endl;
+    a.eliminar(2);
+    a.imprimir();
+    cout<<"Mayor elemento"<<endl;
+    cout<<a.mayor_elemento()<<endl;
+    cout<<"Menor elemento"<<endl;
+    cout<<a.menor()<<endl;
+
+    return 0;
+}
