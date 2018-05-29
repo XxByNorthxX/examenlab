@@ -1,0 +1,25 @@
+#ifndef ARREGLO_H
+#define ARREGLO_H
+
+
+class Arreglo
+{
+    public:
+        Arreglo();
+        Arreglo(int);
+        ~Arreglo();
+        int *data;
+        void insertar(int, int);
+        void rellenar_arreglo();
+        void imprimir();
+        void eliminar(int);
+        int menor();
+        int mayor_elemento();
+        void vaciar();
+
+
+    private:
+        int tam;
+};
+
+#endif // ARREGLO_H
