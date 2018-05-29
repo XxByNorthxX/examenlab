@@ -1,0 +1,207 @@
+#include "Arreglo.h"
+#include <iostream>
+using namespace std;
+
+Arreglo::Arreglo()
+{
+    tam=0;
+    int *ptr=new int [tam];
+}
+
+Arreglo::Arreglo(int tam)
+{
+    this->tam=tam;
+    data=new int [tam];
+}
+
+void Arreglo::rellenar_arreglo()
+{
+
+    for(int i=0; i<tam; i++)
+    {
+        int n=0;
+        cin>>n;
+        data[i]=n;
+    }
+}
+
+void Arreglo::insertar(int n, int pos)
+{
+    tam=tam+1;
+    int *nuevo=new int [tam];
+    bool j=false;
+    for(int i=0; i<tam; i++)
+    {
+        if(i==pos)
+        {
+            j=true;
+            nuevo[i]=n;
+            continue;
+        }
+        if(j)
+        {
+            nuevo[i]=data[i-1];
+        }
+        else{
+            nuevo[i]=data[i];
+        }
+    }
+    delete[] data;
+    data=nuevo;
+}
+
+void Arreglo::imprimir()
+{
+    for (int i=0; i<tam; i++)
+    {
+        cout<<data[i]<<endl;
+    }
+}
+
+void Arreglo::eliminar(int pos)
+{
+    tam=tam-1;
+    int *nuevo=new int[tam];
+    bool j=false;
+    for(int i=0; i<tam; i++)
+    {
+        if(i==pos)
+        {
+            j=true;
+        }
+        if(j)
+        {
+            nuevo[i]=data[i+1];
+        }
+        else{
+            nuevo[i]=data[i];
+        }
+    }
+    delete[] data;
+    data=nuevo;
+}
+
+int Arreglo::mayor_elemento(){
+    int mayor=data[0];
+    for(int i=1; i<tam; i++)
+    {
+        if(mayor<data[i])
+        {
+            mayor=data[i];
+        }
+    }
+    return mayor;
+}
+int Arreglo::menor()
+{
+    int menor=data[0];
+    for(int i=1; i<tam; i++)
+    {
+        if(menor>data[i])
+        {
+            menor=data[i];
+        }
+    }
+    return menor;
+}
+
+void Arreglo::vaciar()
+{
+    int *nuevo=new int[tam];
+    delete [] data;
+    data=nuevo;
+}
+float Arreglo::promedio()
+{
+    float tmp=0;
+    for(int i=0; i<tam; i++)
+    {
+        tmp=tmp+data[i];
+    }
+    tmp=tmp/tam;
+    return tmp;
+
+}
+
+int Arreglo::mayor_primo()
+{
+    int mayor=data[0];
+    bool j=true;
+    for(int i=0; i<tam; i++)
+    {
+        for(int e=2; e<data[i]; e++){
+            if(data[i]%e!=0)
+            {
+                j=true;
+            }
+        }
+        if(j){
+            if(mayor<data[i]){
+                mayor=data[i];
+            }
+        }
+    }
+    return mayor;
+}
+
+int Arreglo::menor_primo()
+{
+    int menor=data[0];
+    bool j=true;
+    for(int i=0; i<tam; i++)
+    {
+        for(int e=2; e<data[i]; e++){
+            if(data[i]%e!=0)
+            {
+                j=1;
+            }
+        }
+        if(j){
+            if(menor>data[i]){
+                menor=data[i];
+            }
+        }
+
+    }
+    return menor;
+}
+
+void Arreglo::invertir()
+{
+    int fin=tam-1;
+    for(int i=0; i<tam/2; i++)
+    {
+        int tmp=data[i];
+        data[i]=data[fin];
+        data[fin]=tmp;
+        fin--;
+    }
+}
+void Arreglo::ordenar()
+{
+    for(int i=0; i<tam; i++)
+    {
+        for(int e=i; e>=0; e--)
+        {
+            if(data[e]>data[e+1])
+            {
+                int tmp=data[e];
+                data[e]=data[e+1];
+                data[e+1]=tmp;
+            }
+        }
+    }
+}
+int Arreglo::suma()
+{
+    int sum=0;
+    for(int i=0; i<tam; i++)
+    {
+        sum=sum+data[i];
+    }
+    return sum;
+}
+Arreglo::~Arreglo()
+{
+    delete [] data;
+}
